@@ -7,8 +7,34 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+
+    <ion-item>
+        <ion-label floating>number</ion-label>
+        <ion-input type="text"  [(ngModel)]="inputValue"></ion-input>
+      </ion-item>
+    
+
+    <ion-item>
+        <ion-label fixed>gender</ion-label> 
+    <ion-select [(ngModel)]="Gender_value">
+        <ion-option value="male">Male</ion-option>
+        <ion-option value="female">Female</ion-option>
+      </ion-select>
+
+    </ion-item>
+ 
+      <button ion-button block (click)="callAPI()">callAPI</button>
+      
+      <ion-card   *ngFor='let user of users_results'>
+      <ion-label>{{user.name.first}}</ion-label>
+      <ion-label>{{user.age}}</ion-label>
+  <ion-label>
+      <img [src]="user.picture.medium">
+    </ion-label>
+    </ion-card >
+  
+
+  
+
 </ion-content>
