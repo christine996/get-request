@@ -1,3 +1,39 @@
 page-home {
+.card-button{
+   
+    color: rgb(120, 0, 71);
+    width:40%;
+    font-family:  Calibri;
+    margin-left: 50%
+    
 
+}
+.small{
+    width:30%;
+    
+    color: rgb(120, 0, 71);
+}
+
+.borderBottom {
+    border-bottom: 1px ridge lightgrey;
+   }
+   .border {
+    border-bottom: 1px ridge lightgrey;
+    border-right: 1px ridge lightgrey;
+   }
+
+   img{
+    margin: 0 auto !important;
+   }
+   .select{
+
+    border-bottom: 0.00
+   }
+
+   .showUser{
+       display: block;
+   }
+   .hideUser{
+       display: none;
+   }
 }

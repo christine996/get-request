@@ -8,33 +8,104 @@
 
 <ion-content padding>
 
-
+  <ion-card>
     <ion-item>
-        <ion-label floating>number</ion-label>
-        <ion-input type="text"  [(ngModel)]="inputValue"></ion-input>
-      </ion-item>
-    
-
-    <ion-item>
-        <ion-label fixed>gender</ion-label> 
-    <ion-select [(ngModel)]="Gender_value">
-        <ion-option value="male">Male</ion-option>
-        <ion-option value="female">Female</ion-option>
-      </ion-select>
-
+      <ion-label ion-text color="dark" floating>number</ion-label>
+      <ion-input ion-text color="dark" type="text" [(ngModel)]="inputValue"></ion-input>
     </ion-item>
+    <button color="light" ion-button block class="card-button" text-center outline (click)="callAPI()" icon-end>RENDER
+      USERS
+      <ion-icon *ngIf="clicked" name="ios-arrow-dropdown-circle"></ion-icon>
+    </button>
+  </ion-card>
+
+  <ion-item class="select">
+    <ion-label fixed>gender</ion-label>
+    <ion-select #gender (ionChange)="filter()" (ionCancel)="cancelSelection()" [(ngModel)]="Gender_value">
+      <ion-option value="male">Male</ion-option>
+      <ion-option value="female">Female</ion-option>
+
+
+
+    </ion-select>
+
+  </ion-item>
+
+  <ion-item class="select">
+    <ion-label fixed>NATIONALITY</ion-label>
+    <ion-select  [(ngModel)]="NAT">
+      <ion-option *ngFor="let nat of users_nat" [value]="nat.code">{{nat.value}}</ion-option>
+
+    </ion-select>
+
+  </ion-item>
+
+
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center col-4 *ngFor="let user of users_results;let i=index" 
+        [ngClass]="(user.gender == Gender_value || !Gender_value ) && ( user.nat == NAT || !NAT ) ? 'showUser':'hideUser'" >
+        <img [src]="user.picture.medium">
+        <div>{{user.name.first}}</div>
+        <div>{{user.nat}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+  <!--  
  
-      <button ion-button block (click)="callAPI()">callAPI</button>
-      
-      <ion-card   *ngFor='let user of users_results'>
-      <ion-label>{{user.name.first}}</ion-label>
-      <ion-label>{{user.age}}</ion-label>
-  <ion-label>
-      <img [src]="user.picture.medium">
-    </ion-label>
-    </ion-card >
-  
+
 
   
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center col-4 *ngFor="let user of users_results;let i=index"  (click)="nav(user)"
+        [ngClass]=" (i % 3 == 2) ? 'borderBottom' : 'border'">
+        <img  [src]="user.picture.medium">
+        <div >{{user.name.first}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button color="light" ion-button block class="card" text-center  outline (click)="callAPI()" icon-end>RENDER USERS
+    <ion-icon *ngIf="clicked" name="ios-arrow-dropdown-circle"></ion-icon>
+  </button>
+<p>
+
+</p>
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   <button color="light" ion-button block class="card" text-center  outline (click)="callAPI()" icon-end>RENDER USERS
+    <ion-icon *ngIf="clicked" name="ios-arrow-dropdown-circle"></ion-icon>
+  </button>
+ 
+ <ion-list>
+  <ion-item *ngFor='let user of users_results'>
+
+  {{user.name.first}}
+  <ion-avatar item-start>
+    <img [src]="user.picture.medium">
+  </ion-avatar>
+<button ion-button float-right outline  class="small"(click)="nav(user)"  color="new" icon-end>
+    view
+  <ion-icon   name="ios-arrow-forward"></ion-icon>
+
+  
+</button>
+
+
+
+
+
+
+ </ion-item>
+</ion-list>
+-->
+
+
+
 
 </ion-content>
